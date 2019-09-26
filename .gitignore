@@ -1,0 +1,5 @@
+templates/
+db.sqlite3
+__pycach__/
+*.pyc
+migrations/
