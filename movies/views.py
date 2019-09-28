@@ -73,13 +73,16 @@ def rate_movie(request, movie_id):
             movie_rate.film = movie
             movie_rate.user = user
             movie_rate.rate = rating
-            movie.rating = (movie.rating * movie.raters + rating)/(movie.raters + 1)
+            movie.rating = (movie.rating * movie.raters +
+                            rating)/(movie.raters + 1)
             movie.raters += 1
         else:
-            movie_rate = models.MovieRate.objects.get(Q(user=user) & Q(film=movie))
+            movie_rate = models.MovieRate.objects.get(
+                Q(user=user) & Q(film=movie))
             old_rating = movie_rate.rate
             movie_rate.rate = rating
-            movie.rating = (movie.rating * movie.raters - old_rating + rating)/movie.raters
+            movie.rating = (movie.rating * movie.raters -
+                            old_rating + rating)/movie.raters
         movie_rate.save()
         movie.save()
     return redirect('movie_detail', pk=movie_id)
@@ -103,5 +106,3 @@ class PersonsList(generics.ListCreateAPIView):
 class PersonDetail(generics.RetrieveAPIView):
     queryset = models.Person.objects.all()
     serializer_class = PersonSerializer
-
-

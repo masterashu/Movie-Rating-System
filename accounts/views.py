@@ -16,7 +16,8 @@ def login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
-            user = authenticate(username=request.POST['username'], password=request.POST['password'])
+            user = authenticate(
+                username=request.POST['username'], password=request.POST['password'])
             if user is not None:
                 auth_login(request, user)
                 return render(request, 'accounts/profile.html', context={'user': request.user})

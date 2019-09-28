@@ -21,7 +21,8 @@ class Person(models.Model):
 
 class Movie(models.Model):
     movie_name = models.CharField(max_length=40)
-    release_date = models.DateField('Release Date',auto_now=False, auto_now_add=False)
+    release_date = models.DateField(
+        'Release Date', auto_now=False, auto_now_add=False)
     rating = models.DecimalField(max_digits=3,  decimal_places=2, default=0.0)
     raters = models.IntegerField(default=0)
 
@@ -46,7 +47,8 @@ class MoviePerson(models.Model):
     role = models.CharField(max_length=2, choices=ROLE_CHOICES, default=ACTOR)
 
     def __str__(self):
-        text = [str(self.film.movie_name), str(self.person.first_name + ' ' + self.person.last_name), str(self.role)]
+        text = [str(self.film.movie_name), str(
+            self.person.first_name + ' ' + self.person.last_name), str(self.role)]
         return '|'.join(text)
 
 
