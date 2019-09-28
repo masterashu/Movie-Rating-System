@@ -1,5 +1,7 @@
 templates/
 db.sqlite3
-__pycach__/
+__pycache__/
 *.pyc
 migrations/
+.vscode/
+.idea/
