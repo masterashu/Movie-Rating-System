@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock title %}</title>
+</head>
+<body>
+<header>
+    {% if user is True %}
+        <a href="{% url 'profile' %}">User Profile: {{ userDetail.first_name }} {{ userDetail.last_name }}</a>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'signup' %}">Signup</a>
+    {% endif %}
+</header>
+{% block body %}
+{% endblock body %}
+<footer style="bottom:0;clear: both">
+    <a href="{% url 'movie_home' %}">Go to Home.</a>
+</footer>
+</body>
+</html>

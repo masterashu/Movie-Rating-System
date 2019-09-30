@@ -1,0 +1,17 @@
+{% extends 'movies/base.html' %}
+{% block title %}{{ person.first_name }} {{ person.last_name }}{% endblock %}
+
+{% block body %}
+<div class="person_data">
+<h1>{{ person.first_name }} {{ person.last_name }} | {{ person.get_sex_display }}</h1>
+<h2>Date of Birth: {{ person.dob|date }}</h2><br><br>
+</div>
+<h1>List of Movies:</h1>
+{% for i in movies %}
+<div class="movie_card">
+    <h3><a href="{% url 'movie_detail' i.film.id %}">{{ i.film.movie_name }}</a></h3><br>
+<p>Release Date: {{ i.film.release_date|date }}</p><br>
+<p>Rating: {{ i.film.rating }} <br>Rated by {{ i.film.raters }} users.</p>
+</div>
+{% endfor %}
+{% endblock %}

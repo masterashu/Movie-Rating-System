@@ -1,0 +1,31 @@
+{% extends 'movies/base.html' %}
+{% block title %}{{ movie.movie_name }}{% endblock %}
+
+{% block body %}
+<div class="movie_info">
+    <h1>{{ movie.movie_name }}</h1>
+    <br>
+    <h2>Release Date: {{ movie.release_date|date }}</h2>
+    <br>
+    <p>Rating: {{ movie.rating }} <br>Rated by {{ movie.raters }} users.</p>
+</div>
+    {% if user is True %}
+    <form method="post" action="{% url 'rate_movie' movie.id %}">
+    {% csrf_token %}
+    {% for i in rating %}
+        <input type="radio" name="rating" value="{{ forloop.counter }}" id="{{ forloop.counter }}stars">
+        <label for="{{ forloop.counter }}stars">{{ forloop.counter }} Stars</label>
+    {% endfor %}
+    <input type="submit" value="Submit">
+    </form>
+    {% endif %}
+<h2>Actors / Directors</h2><br>
+{% for i in persons %}
+    <div class="person_block">
+    <h3>{{ i.character_name }}</h3>
+    <p><a href="{% url 'person_detail' i.person.id %}">{{ i.person.first_name }}
+        {{ i.person.last_name }} : {{ i.get_role_display }}</a></p>
+    <br>
+    </div>
+{% endfor %}
+{% endblock %}
