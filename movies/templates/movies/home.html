@@ -4,8 +4,9 @@
 {% endblock title %}
 
 {% block body %}
+<h1> Movies </h1>
 {% for movie in movies %}
-    <div style="width: 30%; float: left; margin: 10px;background-color: aliceblue;" >
+    <div class="card" style="width: 30%; float: left; margin: 10px;background-color: aliceblue;" >
     <h2><a href="{% url 'movie_detail' movie.id %}">{{ movie.movie_name }}</a></h2><br>
     <h3>{{ movie.release_date|date }} | {{ movie.rating }} stars by {{ movie.raters }} users</h3>
     </div>

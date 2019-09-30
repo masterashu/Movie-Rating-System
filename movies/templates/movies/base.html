@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %} {% endblock title %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 </head>
 <body>
-<header>
+<div class="navbar navbar-toggler navbar-light bg-light">
+  <a class="navbar-brand" href="#">Movie Rating System</a>
     {% if user is True %}
-        <a href="{% url 'profile' %}">User Profile: {{ userDetail.first_name }} {{ userDetail.last_name }}</a>
+        <a class="nav-link" href="{% url 'profile' %}">User Profile: {{ userDetail.first_name }} {{ userDetail.last_name }}</a>
     {% else %}
-        <a href="{% url 'login' %}">Login</a>
-        <a href="{% url 'signup' %}">Signup</a>
+        <a class="nav-link" href="{% url 'login' %}">Login</a>
+        <a class="nav-link" href="{% url 'signup' %}">Signup</a>
     {% endif %}
-</header>
+</div>
 {% block body %}
 {% endblock body %}
 <footer style="bottom:0;clear: both">
